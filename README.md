@@ -6,6 +6,8 @@ This is a study project that demonstrates the use of a VL53L0X distance sensor w
 
 The project reads distance measurements from a VL53L0X Time-of-Flight sensor and displays them on an OLED screen. It implements a smoothing algorithm to prevent sudden changes in readings and provides both numeric and visual (progress bar) feedback.
 
+https://github.com/user-attachments/assets/1d50550c-6bab-42f2-ba55-5e22bd498b45
+
 ### Features
 
 - Real-time distance measurements using VL53L0X sensor
