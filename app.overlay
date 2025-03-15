@@ -1,0 +1,76 @@
+/ {
+	model = "01space ESP32C3 0.42 OLED";
+
+	chosen {
+		zephyr,sram = &sram1;
+		zephyr,console = &usb_serial;
+		zephyr,shell-uart = &usb_serial;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+		zephyr,canbus = &twai;
+		zephyr,bt-hci = &esp32_bt_hci;
+	};
+
+	aliases {
+		i2c-0 = &i2c0;
+		watchdog0 = &wdt0;
+        led0 = &status_led;
+	};
+
+    leds {
+        compatible = "gpio-leds";
+        status_led: led_0 {
+            gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+            label = "Status LED";
+        };
+    };
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-names = "default";
+
+	vl53l0x@29 {
+		compatible = "st,vl53l0x";
+		reg = <0x29>;
+		label = "VL53L0X";
+	};
+};
+
+/* Have to use uart1 as some tests are hardcoded for that DTS node :/ */
+&uart1 {
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-names = "default";
+};
+
+&usb_serial {
+	status = "okay";
+};
+
+&trng0 {
+	status = "okay";
+};
+
+&wdt0 {
+	status = "okay";
+};
+
+&timer0 {
+	status = "okay";
+};
+
+&timer1 {
+	status = "okay";
+};
+
+&wifi {
+	status = "okay";
+};
+
+&esp32_bt_hci {
+	status = "okay";
+};
